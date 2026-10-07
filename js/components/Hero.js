@@ -58,11 +58,11 @@ export default function Hero() {
       <div className="sun" />
       <div className="horizon" ref=${horizonRef} />
 
-      <a className="badge" href="#comprar" aria-label=${`Entrada a ${EVENTO.precio}`}>
+      <a className="badge" href="#comprar" aria-label=${`${EVENTO.tipoEntrada}: ${EVENTO.precio}`}>
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <path className="boil" d="M50 2 L58 20 L74 8 L74 28 L94 26 L84 42 L98 54 L80 62 L88 82 L68 78 L62 98 L50 84 L38 98 L32 78 L12 82 L20 62 L2 54 L16 42 L6 26 L26 28 L26 8 L42 20 Z" fill="#4F1E0C" stroke="#FEFFC6" strokeWidth="2.5" strokeLinejoin="round" />
         </svg>
-        <span className="in"><b>${EVENTO.precio}</b><small>la entrada</small></span>
+        <span className="in"><b>${EVENTO.precio}</b><small>${EVENTO.tipoEntrada.toLowerCase()}</small></span>
       </a>
 
       <div className="hero-inner wrap">

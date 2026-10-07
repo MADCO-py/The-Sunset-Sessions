@@ -7,12 +7,13 @@
 export const WHATSAPP = '50258387088' // 502 + número, sin espacios ni +
 
 export const EVENTO = {
-  fecha: '1 de noviembre',
-  diaCompleto: 'Domingo 1 de noviembre',
+  fecha: '7 de noviembre',
+  diaCompleto: 'Sábado 7 de noviembre',
   hora: '4:00 a 6:00 p. m.',
-  inicio: '2026-11-01T16:00:00-06:00', // hora de Guatemala, para la cuenta regresiva
+  inicio: '2026-11-07T16:00:00-06:00', // hora de Guatemala, para la cuenta regresiva
   lugar: 'Casa Tina, zona 10',
   precio: 'Q100',
+  tipoEntrada: 'Preventa', // cámbialo a 'Entrada general' cuando termine la preventa
   direccion: 'Diagonal 6 15-36, zona 10, Ciudad de Guatemala',
 }
 

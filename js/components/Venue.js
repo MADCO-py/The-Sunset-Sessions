@@ -1,16 +1,70 @@
-import { html, GoogleLogo, NavigationArrow } from '../lib.js'
+import { html, useEffect, useRef, useState, GoogleLogo, NavigationArrow, X, ArrowRight } from '../lib.js'
 import { EVENTO, NAVEGACION, asset } from '../config.js'
 import { Reveal, SectionHead } from './Shared.js'
 
+// Fotos del lugar. "forma" decide el tamaño de cada cuadro en el mosaico.
 const FOTOS = [
-  ['cafe1.webp', 'Mesas de madera de Casa Tina'],
-  ['cafe3.webp', 'Barra de café con tazas'],
-  ['cafe2.webp', 'Máquina de espresso'],
-  ['cafe5.webp', 'Tazas y utensilios de café'],
-  ['cafe4.webp', 'Barra de Casa Tina'],
+  { video: 'hiedra.mp4', src: 'hiedra.jpg', texto: 'La pared de hiedra', forma: 'alta' },
+  { src: 'cafe1.webp', texto: 'Mesas de madera', forma: 'normal' },
+  { src: 'cafe3.webp', texto: 'La barra', forma: 'normal' },
+  { src: 'cafe2.webp', texto: 'Café de especialidad', forma: 'ancha' },
+  { src: 'cafe5.webp', texto: 'Tazas listas', forma: 'normal' },
+  { src: 'cafe4.webp', texto: 'Detrás de la barra', forma: 'normal' },
 ]
 
+function Media({ f, full }) {
+  return f.video
+    ? html`<video src=${asset(f.video)} poster=${asset(f.src)} autoPlay muted loop playsInline aria-label=${f.texto} />`
+    : html`<img src=${asset(f.src)} alt=${f.texto} loading=${full ? 'eager' : 'lazy'} />`
+}
+
+// Visor a pantalla completa: flechas, deslizar con el dedo y Escape para cerrar
+function Visor({ i, setI }) {
+  const startX = useRef(null)
+  const total = FOTOS.length
+  const ir = (d) => setI((i + d + total) % total)
+
+  useEffect(() => {
+    document.body.classList.add('lock')
+    const onKey = (e) => {
+      if (e.key === 'Escape') setI(null)
+      if (e.key === 'ArrowRight') ir(1)
+      if (e.key === 'ArrowLeft') ir(-1)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => { document.body.classList.remove('lock'); window.removeEventListener('keydown', onKey) }
+  }, [i])
+
+  const f = FOTOS[i]
+  return html`
+    <div
+      className="visor"
+      role="dialog"
+      aria-modal="true"
+      aria-label=${f.texto}
+      onClick=${(e) => e.target === e.currentTarget && setI(null)}
+      onPointerDown=${(e) => { startX.current = e.clientX }}
+      onPointerUp=${(e) => {
+        if (startX.current == null) return
+        const dx = e.clientX - startX.current
+        if (Math.abs(dx) > 50) ir(dx < 0 ? 1 : -1)
+        startX.current = null
+      }}
+    >
+      <button className="visor-close" onClick=${() => setI(null)} aria-label="Cerrar"><${X} weight="bold" size=${26} /></button>
+      <figure className="visor-fig" key=${i}>
+        <${Media} f=${f} full=${true} />
+        <figcaption><span>${f.texto}</span><span>${i + 1} / ${total}</span></figcaption>
+      </figure>
+      <button className="visor-nav prev" onClick=${() => ir(-1)} aria-label="Foto anterior"><${ArrowRight} weight="bold" size=${24} /></button>
+      <button className="visor-nav next" onClick=${() => ir(1)} aria-label="Foto siguiente"><${ArrowRight} weight="bold" size=${24} /></button>
+    </div>
+  `
+}
+
 export default function Venue() {
+  const [abierta, setAbierta] = useState(null)
+
   return html`
     <section className="block" id="lugar">
       <div className="wrap">
@@ -22,7 +76,7 @@ export default function Venue() {
             <dl className="facts">
               <div><dt>Fecha</dt><dd>${EVENTO.diaCompleto}</dd></div>
               <div><dt>Hora</dt><dd>${EVENTO.hora}</dd></div>
-              <div><dt>Entrada</dt><dd>${EVENTO.precio}</dd></div>
+              <div><dt>${EVENTO.tipoEntrada}</dt><dd>${EVENTO.precio}</dd></div>
               <div><dt>Dirección</dt><dd>${EVENTO.direccion}</dd></div>
             </dl>
             <div className="nav-btns">
@@ -34,17 +88,17 @@ export default function Venue() {
               </a>
             </div>
           <//>
-          <${Reveal} className="reel-wrap" delay=${120}>
-            <div className="reel" tabIndex="0" aria-label="Fotos de Casa Tina, desliza para ver más">
-              <figure><video src=${asset('hiedra.mp4')} poster=${asset('hiedra.jpg')} autoPlay muted loop playsInline aria-label="Pared de hiedra en Casa Tina" /></figure>
-              ${FOTOS.map(([f, alt]) => html`
-                <figure key=${f}><img src=${asset(f)} alt=${alt} loading="lazy" /></figure>
-              `)}
-            </div>
-            <p className="reel-hint">Desliza para ver más fotos</p>
+          <${Reveal} className="gallery" delay=${120}>
+            ${FOTOS.map((f, i) => html`
+              <button key=${f.src} className=${`tile ${f.forma}`} style=${{ '--r': `${i % 2 ? 1.2 : -1.2}deg` }} onClick=${() => setAbierta(i)} aria-label=${`Ver foto: ${f.texto}`}>
+                <${Media} f=${f} />
+                <span className="tile-tag">${f.texto}</span>
+              </button>
+            `)}
           <//>
         </div>
       </div>
+      ${abierta !== null && html`<${Visor} i=${abierta} setI=${setAbierta} />`}
     </section>
   `
 }

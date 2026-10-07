@@ -19,7 +19,7 @@ Abre `js/config.js` en GitHub, toca el lápiz de editar, cambia lo que necesites
 | --- | --- |
 | Número de WhatsApp | `WHATSAPP` (502 + número, sin espacios) |
 | Fecha, hora, precio, dirección | `EVENTO` |
-| Hora de la cuenta regresiva | `EVENTO.inicio` (formato `2026-11-01T16:00:00-06:00`) |
+| Hora de la cuenta regresiva | `EVENTO.inicio` (formato `2026-11-07T16:00:00-06:00`) |
 | Botones de Google Maps y Waze | `COORDENADAS` (opcional, para que lleve justo a la puerta) |
 | Mensaje del micrófono abierto | `MSJ_MICROFONO` |
 | Pistas de artistas | `ARTISTAS` |

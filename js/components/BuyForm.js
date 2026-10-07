@@ -39,7 +39,7 @@ function mensaje(d) {
     `*Correo:* ${d.correo.trim()}`,
     `*Me enteré por:* ${fuenteTexto(d)}`,
     '',
-    `*Entrada general:* ${EVENTO.precio}`,
+    `*${EVENTO.tipoEntrada}:* ${EVENTO.precio}`,
   ].join('\n')
 }
 
@@ -48,7 +48,7 @@ const V = (v) => (v ? html`<mark>${v}</mark>` : html`<span className="empty">...
 function Preview({ d }) {
   return html`
     <div className="bubble">
-      Hola, quiero comprar mi entrada para The Sunset Sessions (${EVENTO.fecha}, ${EVENTO.lugar}).${'\n\n'}Nombre: ${V(d.nombre.trim())}${'\n'}Edad: ${V(d.edad)}${'\n'}Teléfono: ${V(d.telefono)}${'\n'}Correo: ${V(d.correo.trim())}${'\n'}Me enteré por: ${V(fuenteTexto(d))}${'\n\n'}Entrada general: ${EVENTO.precio}
+      Hola, quiero comprar mi entrada para The Sunset Sessions (${EVENTO.fecha}, ${EVENTO.lugar}).${'\n\n'}Nombre: ${V(d.nombre.trim())}${'\n'}Edad: ${V(d.edad)}${'\n'}Teléfono: ${V(d.telefono)}${'\n'}Correo: ${V(d.correo.trim())}${'\n'}Me enteré por: ${V(fuenteTexto(d))}${'\n\n'}${EVENTO.tipoEntrada}: ${EVENTO.precio}
     </div>
   `
 }
@@ -132,7 +132,7 @@ export default function BuyForm() {
 
           <${Reveal} as="aside" className="preview" aria-live="polite">
             <div className="ticket">
-              <span>Entrada general<small>${EVENTO.fecha}, ${EVENTO.hora.split(' a ')[0]} p. m.</small></span>
+              <span>${EVENTO.tipoEntrada}<small>${EVENTO.fecha}, ${EVENTO.hora.split(' a ')[0]} p. m.</small></span>
               <b>${EVENTO.precio}</b>
             </div>
             <div className="phone">

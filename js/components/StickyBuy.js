@@ -25,11 +25,8 @@ export default function StickyBuy() {
 
   return html`
     <div className=${`sticky-buy ${show ? 'show' : ''}`} aria-hidden=${!show}>
-      <div>
-        <b>${EVENTO.precio}</b>
-        <span>${EVENTO.fecha}, Casa Tina</span>
-      </div>
-      <a className="btn sm" href="#comprar" tabIndex=${show ? 0 : -1}>Comprar entrada</a>
+      <p><b>${EVENTO.precio}</b><span>${EVENTO.tipoEntrada}</span></p>
+      <a className="btn sm" href="#comprar" tabIndex=${show ? 0 : -1}>Comprar</a>
     </div>
   `
 }

@@ -78,7 +78,7 @@ export default function Nav() {
         <div className="mobile-menu-foot">
           <p>${EVENTO.fecha}, ${EVENTO.hora}<br />${EVENTO.lugar}</p>
           <a className="btn" href="#comprar" onClick=${close} tabIndex=${tab}>
-            Comprar entrada, ${EVENTO.precio}
+            Comprar entrada, ${EVENTO.tipoEntrada.toLowerCase()} ${EVENTO.precio}
           </a>
         </div>
         <img className="mobile-menu-sun boil" src=${asset('sun_kiss.webp')} alt="" />

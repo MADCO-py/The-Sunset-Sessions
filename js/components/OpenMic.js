@@ -36,15 +36,17 @@ export default function OpenMic() {
   return html`
     <section className="block mic" id="microfono">
       <div className="wrap mic-grid">
-        <${Reveal}>
+        <${Reveal} className="mic-text">
           <h2>Micrófono abierto</h2>
           <p className="say">¿Quieres estar frente a las luces?</p>
           <p className="sub">Escríbenos, muéstranos tu talento y sal al escenario.</p>
+        <//>
+        <div className="mic-stage"><${MicCartoon} /></div>
+        <div className="mic-cta">
           <a className="btn" href=${waLink(WHATSAPP, MSJ_MICROFONO)} target="_blank" rel="noopener">
             <${WhatsappLogo} weight="bold" size=${26} /> Quiero robarme el micrófono
           </a>
-        <//>
-        <${MicCartoon} />
+        </div>
       </div>
     </section>
   `
