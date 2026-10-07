@@ -1,57 +1,37 @@
 # The Sunset Sessions
 
-Página del evento hecha con React + Vite. Solo frontend; se publica en GitHub Pages.
-
-## Correrla en tu compu
-
-```bash
-npm install
-npm run dev
-```
-
-Abre la dirección que te muestra la terminal (normalmente http://localhost:5173). Para probarla en tu celular, corre `npm run dev -- --host` y abre la IP que aparece en la terminal estando en el mismo WiFi.
+Página del evento hecha con React, **sin compilar nada**: no necesita Node, npm ni `npm run build`.
+React, htm y los íconos de Phosphor ya vienen incluidos en `vendor/react-bundle.js`.
 
 ## Publicar en GitHub Pages
 
-La página ya compilada está en la carpeta **`docs/`**. GitHub Pages publica esa carpeta directo.
-
-1. Sube todo el proyecto a un repo en GitHub, en la rama `main`. Asegúrate de que la carpeta `docs/` quede en el repo.
+1. Crea un repo y sube **todo el contenido de esta carpeta** a la rama `main`. El `index.html` tiene que quedar en la raíz del repo, no dentro de otra carpeta.
 2. En el repo ve a **Settings → Pages**.
 3. En **Source** elige **Deploy from a branch**.
-4. En **Branch** elige `main` y la carpeta **`/docs`**, y dale **Save**.
-5. Espera 1 o 2 minutos y abre el link que aparece arriba en esa misma página.
+4. En **Branch** elige `main` y la carpeta **`/ (root)`**, y dale **Save**.
+5. Espera 1 o 2 minutos y abre el link que aparece arriba en esa página.
 
-### Cada vez que cambies algo
+## Hacer cambios
 
-```bash
-npm run build
-```
+Abre `js/config.js` en GitHub, toca el lápiz de editar, cambia lo que necesites y dale **Commit changes**. En 1 o 2 minutos la página se actualiza sola.
 
-Eso vuelve a generar `docs/`. Después sube los cambios (commit y push) y GitHub Pages se actualiza solo.
-
-### Si sale la pantalla en blanco
-
-Casi siempre es porque Pages está publicando la raíz del repo en vez de `/docs`. Revisa el paso 4.
-
-## Qué cambiar y dónde
-
-Casi todo está en **`src/config.js`**:
-
-| Qué | Dónde |
+| Qué | Dónde (en `js/config.js`) |
 | --- | --- |
 | Número de WhatsApp | `WHATSAPP` (502 + número, sin espacios) |
 | Fecha, hora, precio, dirección | `EVENTO` |
-| Botones de Google Maps y Waze | `COORDENADAS` (opcional, para que lleve justo a la puerta) |
 | Hora de la cuenta regresiva | `EVENTO.inicio` (formato `2026-11-01T16:00:00-06:00`) |
+| Botones de Google Maps y Waze | `COORDENADAS` (opcional, para que lleve justo a la puerta) |
 | Mensaje del micrófono abierto | `MSJ_MICROFONO` |
 | Pistas de artistas | `ARTISTAS` |
 | Opciones de "¿Cómo te enteraste?" | `FUENTES` |
 | Logos de marcas | `MARCAS` |
 | Instagram y TikTok | `REDES` |
 
+Los textos de cada sección están en `js/components/` y los colores y tamaños en `styles.css`.
+
 ### Revelar a un artista
 
-Sube su foto a `public/assets/` y en `ARTISTAS` cambia:
+Sube su foto a la carpeta `assets/` y en `ARTISTAS` cambia:
 
 ```js
 { pista: 'Fui youtuber de Minecraft por un tiempo.', revelado: true, nombre: 'Nombre del artista', foto: 'artista1.jpg' }
@@ -59,7 +39,7 @@ Sube su foto a `public/assets/` y en `ARTISTAS` cambia:
 
 ### Agregar marcas aliadas
 
-Sube los logos a `public/assets/` y llena:
+Sube los logos a `assets/` y llena:
 
 ```js
 export const MARCAS = [
@@ -69,36 +49,57 @@ export const MARCAS = [
 
 ### Fuentes (Chillink y Neue Montreal)
 
-Copia los archivos a `public/fonts/` con estos nombres:
+Sube los archivos a la carpeta `fonts/` con estos nombres:
 
 - `Chillink.otf`
 - `NeueMontreal-Regular.otf`
 - `NeueMontreal-Bold.otf`
 
-Si son `.ttf` o `.woff2`, cambia la extensión en `public/fonts/fonts.css`. Mientras no estén, la página usa Shrikhand y Schibsted Grotesk.
+Si son `.ttf` o `.woff2`, cambia la extensión en `fonts/fonts.css`. Mientras no estén, la página usa Shrikhand y Schibsted Grotesk.
+
+## Verla en tu compu antes de subirla
+
+Abrir `index.html` con doble clic **no funciona** (los navegadores bloquean los módulos de JavaScript desde archivos locales). Usa cualquiera de estas opciones:
+
+- En VS Code, la extensión **Live Server**: clic derecho en `index.html` → *Open with Live Server*.
+- En la terminal, dentro de esta carpeta: `python -m http.server` y abre http://localhost:8000
+
+## Cómo se escribe el código (htm en vez de JSX)
+
+Es React normal, pero en vez de JSX se usa `html` con comillas invertidas, que el navegador entiende directo:
+
+```js
+// JSX
+<Boton color="naranja" onClick={abrir}>{texto}</Boton>
+
+// htm
+html`<${Boton} color="naranja" onClick=${abrir}>${texto}<//>`
+```
+
+Las llaves `{ }` se vuelven `${ }`, los componentes se escriben `<${Componente}>` y se cierran con `<//>`.
 
 ## Estructura
 
 ```
-src/
-  config.js          datos del evento (lo que más se edita)
-  styles.css         estilos, mobile first
-  App.jsx            orden de las secciones
-  components/
-    Nav.jsx          barra de arriba y menú de celular
-    Hero.jsx         inicio con el atardecer
-    Countdown.jsx    cuenta regresiva
-    About.jsx        quiénes somos
-    Artists.jsx      artistas misteriosos
-    OpenMic.jsx      micrófono abierto
-    Venue.jsx        el lugar
-    Brands.jsx       marcas aliadas
-    HowToBuy.jsx     cómo comprar
-    BuyForm.jsx      formulario de compra por WhatsApp
-    Footer.jsx       redes con Phosphor Icons
-    StickyBuy.jsx    barra fija de compra en celular
-    Shared.jsx       filtro de caricatura, guante, animación de aparición
-public/
-  assets/            fotos, videos y mascotas
-  fonts/             fuentes de la marca
+index.html             entrada de la página
+styles.css             estilos (mobile first)
+js/
+  config.js            datos del evento (lo que más se edita)
+  App.js               orden de las secciones
+  main.js              arranca React
+  lib.js               React, htm e íconos
+  components/          una sección por archivo
+vendor/
+  react-bundle.js      React 18 + htm + Phosphor Icons, ya listos (no se edita)
+assets/                fotos, videos y mascotas
+fonts/                 fuentes de la marca
+```
+
+### Usar otro ícono de Phosphor
+
+El paquete incluye: `WhatsappLogo`, `InstagramLogo`, `TiktokLogo`, `GoogleLogo`, `NavigationArrow`, `MapPin`, `Ticket`, `MusicNotes`, `Microphone`, `CalendarBlank`, `Clock`, `EnvelopeSimple`, `Phone`, `ArrowRight` y `X`. Se importan desde `lib.js`:
+
+```js
+import { html, MapPin } from '../lib.js'
+html`<${MapPin} weight="bold" size=${22} />`
 ```
