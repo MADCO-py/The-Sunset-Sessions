@@ -5,11 +5,15 @@ React, htm y los íconos de Phosphor ya vienen incluidos en `vendor/react-bundle
 
 ## Publicar en GitHub Pages
 
-1. Crea un repo y sube **todo el contenido de esta carpeta** a la rama `main`. El `index.html` tiene que quedar en la raíz del repo, no dentro de otra carpeta.
-2. En el repo ve a **Settings → Pages**.
-3. En **Source** elige **Deploy from a branch**.
-4. En **Branch** elige `main` y la carpeta **`/ (root)`**, y dale **Save**.
-5. Espera 1 o 2 minutos y abre el link que aparece arriba en esa página.
+El proyecto trae `.github/workflows/pages.yml`, que publica la página sola en cada push a `main`. No compila nada.
+
+1. Sube **todo el contenido de esta carpeta** a la rama `main`, incluidos los archivos ocultos `.github/` y `.nojekyll`. El `index.html` tiene que quedar en la raíz del repo.
+2. En el repo ve a **Settings → Pages** y en **Source** elige **GitHub Actions**. Esto se hace una sola vez.
+3. Ve a la pestaña **Actions**: el workflow **Publicar página** corre solo. Cuando sale en verde, la página está actualizada.
+
+Si algún día no corre, entra a **Actions → Publicar página → Run workflow**.
+
+Si no ves los cambios, abre la página en incógnito: el navegador guarda los archivos viejos por unos minutos.
 
 ## Hacer cambios
 
