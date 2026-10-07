@@ -13,11 +13,25 @@ Abre la dirección que te muestra la terminal (normalmente http://localhost:5173
 
 ## Publicar en GitHub Pages
 
-1. Crea un repo en GitHub y sube todo el proyecto a la rama `main`.
-2. En el repo ve a **Settings → Pages** y en **Source** elige **GitHub Actions**.
-3. Cada vez que hagas push a `main`, el workflow `.github/workflows/deploy.yml` compila y publica la página solo. La dirección queda en **Settings → Pages**.
+La página ya compilada está en la carpeta **`docs/`**. GitHub Pages publica esa carpeta directo.
 
-No hay que configurar nada más: `vite.config.js` usa `base: './'`, así que funciona con cualquier nombre de repo.
+1. Sube todo el proyecto a un repo en GitHub, en la rama `main`. Asegúrate de que la carpeta `docs/` quede en el repo.
+2. En el repo ve a **Settings → Pages**.
+3. En **Source** elige **Deploy from a branch**.
+4. En **Branch** elige `main` y la carpeta **`/docs`**, y dale **Save**.
+5. Espera 1 o 2 minutos y abre el link que aparece arriba en esa misma página.
+
+### Cada vez que cambies algo
+
+```bash
+npm run build
+```
+
+Eso vuelve a generar `docs/`. Después sube los cambios (commit y push) y GitHub Pages se actualiza solo.
+
+### Si sale la pantalla en blanco
+
+Casi siempre es porque Pages está publicando la raíz del repo en vez de `/docs`. Revisa el paso 4.
 
 ## Qué cambiar y dónde
 
