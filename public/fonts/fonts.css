@@ -1,0 +1,26 @@
+/*
+  Fuentes de la marca.
+  Copia aquí (en public/fonts/) los archivos con estos nombres exactos:
+    Chillink.otf
+    NeueMontreal-Regular.otf
+    NeueMontreal-Bold.otf
+  Si tienes .woff2 o .ttf, cambia la extensión y el format() abajo.
+  Mientras no estén, la página usa Shrikhand y Schibsted Grotesk.
+*/
+@font-face {
+  font-family: 'Chillink';
+  src: url('./Chillink.otf') format('opentype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('./NeueMontreal-Regular.otf') format('opentype');
+  font-weight: 400 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('./NeueMontreal-Bold.otf') format('opentype');
+  font-weight: 600 900;
+  font-display: swap;
+}
