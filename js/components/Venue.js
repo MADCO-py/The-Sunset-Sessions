@@ -2,14 +2,17 @@ import { html, useEffect, useRef, useState, GoogleLogo, NavigationArrow, X, Arro
 import { EVENTO, NAVEGACION, asset } from '../config.js'
 import { Reveal, SectionHead } from './Shared.js'
 
-// Fotos del lugar. "forma" decide el tamaño de cada cuadro en el mosaico.
+// Fotos del lugar, en orden.
+// forma: 'alta' (dos filas), 'ancha' (todo el ancho) o 'normal'.
+// frase: texto grande encima de la foto (opcional).
+// texto: etiqueta pequeña de la esquina.
 const FOTOS = [
-  { video: 'hiedra.mp4', src: 'hiedra.jpg', texto: 'La pared de hiedra', forma: 'alta' },
-  { src: 'cafe1.webp', texto: 'Mesas de madera', forma: 'normal' },
+  { src: 'sunset.webp', texto: 'Al atardecer', forma: 'alta' },
+  { src: 'cafe1.webp', texto: 'Mesas de madera', forma: 'normal', frase: 'Tenemos un lugar para ti' },
   { src: 'cafe3.webp', texto: 'La barra', forma: 'normal' },
-  { src: 'cafe2.webp', texto: 'Café de especialidad', forma: 'ancha' },
-  { src: 'cafe5.webp', texto: 'Tazas listas', forma: 'normal' },
-  { src: 'cafe4.webp', texto: 'Detrás de la barra', forma: 'normal' },
+  { video: 'latte.mp4', src: 'latte.jpg', texto: 'Café de especialidad', forma: 'ancha' },
+  { src: 'cafe2.webp', texto: 'Tazas listas', forma: 'normal' },
+  { src: 'poste.webp', texto: 'Los afiches', forma: 'normal', frase: '¿Estás listo?' },
 ]
 
 function Media({ f, full }) {
@@ -92,6 +95,7 @@ export default function Venue() {
             ${FOTOS.map((f, i) => html`
               <button key=${f.src} className=${`tile ${f.forma}`} style=${{ '--r': `${i % 2 ? 1.2 : -1.2}deg` }} onClick=${() => setAbierta(i)} aria-label=${`Ver foto: ${f.texto}`}>
                 <${Media} f=${f} />
+                ${f.frase && html`<span className="tile-frase" aria-hidden="true">${f.frase}</span>`}
                 <span className="tile-tag">${f.texto}</span>
               </button>
             `)}

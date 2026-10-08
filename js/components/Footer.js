@@ -1,5 +1,5 @@
 import { html, InstagramLogo, TiktokLogo, WhatsappLogo } from '../lib.js'
-import { EVENTO, REDES, WHATSAPP, asset } from '../config.js'
+import { CREDITO, EVENTO, REDES, WHATSAPP, asset } from '../config.js'
 import { waLink } from './Shared.js'
 
 export default function Footer() {
@@ -25,6 +25,13 @@ export default function Footer() {
           </div>
         </div>
         <div className="copy"><span>© 2026 The Sunset Sessions</span><span>${REDES.usuario}</span></div>
+        <a className="credit" href=${CREDITO.link} target="_blank" rel="noopener">
+          <img className="credit-gif" src=${asset('gato.webp')} alt="" loading="lazy" />
+          <span className="credit-text">
+            <span>${CREDITO.texto}</span>
+            <b><${InstagramLogo} weight="bold" />${CREDITO.usuario}</b>
+          </span>
+        </a>
       </div>
     </footer>
   `

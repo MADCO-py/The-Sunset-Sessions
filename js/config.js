@@ -9,7 +9,7 @@ export const WHATSAPP = '50258387088' // 502 + número, sin espacios ni +
 export const EVENTO = {
   fecha: '7 de noviembre',
   diaCompleto: 'Sábado 7 de noviembre',
-  hora: '4:00 a 6:00 p. m.',
+  hora: '4:00 a 9:00 p. m.',
   inicio: '2026-11-07T16:00:00-06:00', // hora de Guatemala, para la cuenta regresiva
   lugar: 'Casa Tina, zona 10',
   precio: 'Q100',
@@ -35,6 +35,13 @@ export const REDES = {
   instagram: 'https://www.instagram.com/thesunset_sessions',
   tiktok: 'https://www.tiktok.com/@thesunset_sessions',
   usuario: '@thesunset_sessions',
+}
+
+// Crédito al final de la página
+export const CREDITO = {
+  texto: 'Página creada por',
+  usuario: '@madco.py',
+  link: 'https://www.instagram.com/madco.py/',
 }
 
 export const MSJ_MICROFONO = 'Quiero robarme el micrófono, mi nombre es: '

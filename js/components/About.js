@@ -43,10 +43,10 @@ export default function About() {
             <p>Empezamos pegando afiches en postes y paredes de la ciudad, y queremos que cada sesión se sienta igual de cercana: nuevos artistas, nuevas actividades y la misma idea de siempre, que te vayas con ganas de que llegue la próxima.</p>
           <//>
           <${Reveal} className="collage" aria-label="Fotos de la campaña de afiches" delay=${120}>
-            <figure className="c1"><img src=${asset('calle.webp')} alt="Chica leyendo el afiche en una esquina de la 15 calle A, zona 10" loading="lazy" /></figure>
-            <figure className="c2"><img src=${asset('poste.webp')} alt="Afiche con código QR pegado en un poste" loading="lazy" /></figure>
+            <figure className="c1"><video src=${asset('casatina.mp4')} poster=${asset('casatina.jpg')} autoPlay muted loop playsInline aria-label="Entrada de Casatina con su letrero" /></figure>
+            <figure className="c2"><img src=${asset('cafe5.webp')} alt="Tazas y utensilios de café en la barra" loading="lazy" /></figure>
             <figure className="c3"><video src=${asset('flyer.mp4')} poster=${asset('flyer.jpg')} autoPlay muted loop playsInline aria-label="Video de la campaña" /></figure>
-            <figure className="c4"><img src=${asset('poster.webp')} alt="Afiche oficial: 1 de noviembre, Casa Tina zona 10, Q100" loading="lazy" /></figure>
+            <figure className="c4"><img src=${asset('calle.webp')} alt="Chica leyendo el afiche en una esquina de la 15 calle A, zona 10" loading="lazy" /></figure>
           <//>
         </div>
         <div className="vibes">
