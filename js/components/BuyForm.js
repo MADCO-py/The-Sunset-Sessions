@@ -31,7 +31,7 @@ const formatoTel = (v) => {
 // Lo que se envía por WhatsApp (los * ponen negrita en WhatsApp)
 function mensaje(d) {
   return [
-    `Hola, quiero comprar mi entrada para The Sunset Sessions (${EVENTO.fecha}, ${EVENTO.lugar}).`,
+    `Hola, quiero comprar mi entrada para ☀️The Sunset Sessions☀️ (${EVENTO.fecha}, ${EVENTO.lugar}).`,
     '',
     `*Nombre:* ${d.nombre.trim()}`,
     `*Edad:* ${d.edad}`,
