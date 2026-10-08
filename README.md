@@ -28,7 +28,7 @@ Abre `js/config.js` en GitHub, toca el lápiz de editar, cambia lo que necesites
 | Mensaje del micrófono abierto | `MSJ_MICROFONO` |
 | Pistas de artistas | `ARTISTAS` |
 | Opciones de "¿Cómo te enteraste?" | `FUENTES` |
-| Logos de marcas | `MARCAS` |
+| Marcas aliadas (3 lugares) | `MARCAS` y `TOTAL_MARCAS` |
 | Instagram y TikTok | `REDES` |
 
 Los textos de cada sección están en `js/components/` y los colores y tamaños en `styles.css`.
@@ -41,15 +41,19 @@ Sube su foto a la carpeta `assets/` y en `ARTISTAS` cambia:
 { pista: 'Fui youtuber de Minecraft por un tiempo.', revelado: true, nombre: 'Nombre del artista', foto: 'artista1.jpg' }
 ```
 
-### Agregar marcas aliadas
+### Marcas aliadas
 
-Sube los logos a `assets/` y llena:
+Cada marca se muestra como un disco de vinilo que gira, con su logo al centro. Para cambiar una, sube el logo a `assets/` (de preferencia cuadrado) y edita la lista en `js/config.js`:
 
 ```js
 export const MARCAS = [
-  { nombre: 'Marca uno', logo: 'marca-uno.png' },
+  { nombre: 'Three Day Art', logo: 'threedayart.webp', instagram: 'https://www.instagram.com/threedayart' },
+  { nombre: 'Pop Culture', logo: 'popculture.webp', instagram: 'https://www.instagram.com/popculture.gt/' },
+  { nombre: 'Entre Volcanes', logo: 'entrevolcanes.webp', instagram: 'https://www.instagram.com/entrevolcanes.gt' },
 ]
 ```
+
+Si hay menos marcas que `TOTAL_MARCAS`, los lugares vacíos salen como un vinilo con "?" y "Próximamente".
 
 ### Fuentes (Chillink y Neue Montreal)
 

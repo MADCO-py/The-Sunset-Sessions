@@ -252,13 +252,24 @@ section.block { position: relative; padding: 80px 0; }
 /* ---------- Marcas ---------- */
 .brands { background: var(--cafe); overflow: hidden; border-block: 3px solid var(--crema); }
 .brands .sec-head { margin-bottom: 32px; }
-.marquee-wrap { overflow: hidden; }
-.marquee { display: flex; width: max-content; animation: slide 30s linear infinite; }
-.marquee-copy { display: flex; }
-@keyframes slide { to { transform: translateX(-50%); } }
-.logo-slot { flex: none; width: 190px; height: 110px; margin-right: 16px; display: grid; place-items: center; text-align: center; padding: 10px; border: 2px dashed var(--crema-60); color: var(--crema-60); font-weight: 700; font-size: 14px; }
-.logo-slot.has-logo { border-style: solid; background: var(--crema); }
-.logo-slot img { max-height: 80px; object-fit: contain; }
+.brand-grid { display: grid; gap: 44px; justify-items: center; }
+.ally { display: grid; justify-items: center; gap: 6px; text-align: center; color: var(--crema); text-decoration: none; }
+.vinyl { position: relative; display: block; width: min(220px, 64vw); aspect-ratio: 1; margin-bottom: 12px; border-radius: 50%; filter: drop-shadow(6px 8px 0 rgba(14, 4, 2, .55)); transition: transform .35s cubic-bezier(.3, 1.6, .5, 1); }
+.disc { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, transparent 0 31%, #1a0b05 31.5% 33%, transparent 33.5%), repeating-radial-gradient(circle, #100503 0 1.5px, #22100a 1.5px 3px); box-shadow: inset 0 0 0 3px #0a0302; animation: spin var(--d, 7s) linear infinite; }
+.vinyl-label { position: absolute; left: 50%; top: 50%; width: 60%; height: 60%; transform: translate(-50%, -50%); border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px rgba(254, 255, 198, .22); }
+.soon-label { display: grid; place-items: center; background: var(--naranja); color: var(--noche); font-family: var(--display); font-size: clamp(40px, 12vw, 64px); line-height: 1; }
+.vinyl-shine { position: absolute; inset: 0; border-radius: 50%; pointer-events: none; background: conic-gradient(from 40deg, transparent 0 8%, rgba(254, 255, 198, .16) 12%, transparent 18% 52%, rgba(254, 255, 198, .12) 60%, transparent 66%); mask: radial-gradient(circle, transparent 0 30%, #000 31%); -webkit-mask: radial-gradient(circle, transparent 0 30%, #000 31%); }
+.vinyl-hole { position: absolute; left: 50%; top: 50%; width: 5%; height: 5%; transform: translate(-50%, -50%); border-radius: 50%; background: var(--cafe); box-shadow: 0 0 0 2px rgba(14, 4, 2, .6); }
+.brand-name { font-family: var(--display); font-size: 26px; line-height: 1.1; }
+.brand-ig { display: inline-flex; align-items: center; gap: 6px; color: var(--crema-60); font-size: 15px; font-weight: 600; }
+.brand-ig svg { width: 17px; height: 17px; }
+.ally.soon .brand-name { color: var(--crema-60); }
+.ally:active .vinyl { transform: scale(.96); }
+@media (hover: hover) {
+  .ally:not(.soon):hover .vinyl { transform: translateY(-8px) rotate(-4deg); }
+  .ally:not(.soon):hover .disc { animation-duration: 1.6s; }
+  .ally:not(.soon):hover .brand-name { color: var(--naranja); }
+}
 
 /* ---------- Cómo comprar ---------- */
 .steps { display: grid; gap: 18px; }
@@ -379,6 +390,8 @@ footer h4 { font-weight: 800; font-size: 16px; margin-bottom: 12px; }
   .form-foot small { max-width: 34ch; }
   .gallery { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 170px; gap: 16px; }
   .gallery .tile:last-child { grid-column: span 2; }
+  .brand-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .vinyl { width: min(200px, 26vw); }
   .mystery .peek { width: 130px; }
   .mic .btn { width: auto; }
   .mic-cta { justify-self: center; }
@@ -444,7 +457,8 @@ footer h4 { font-weight: 800; font-size: 16px; margin-bottom: 12px; }
   .mic-stage { align-self: center; }
   .place-grid { grid-template-columns: 1fr 1.5fr; gap: 56px; align-items: center; }
   .gallery { grid-auto-rows: 180px; }
-  .logo-slot { width: 240px; height: 130px; margin-right: 20px; font-size: 15px; }
+  .vinyl { width: 240px; }
+  .brand-name { font-size: 30px; }
   .steps { grid-template-columns: repeat(3, 1fr); gap: 22px; }
   .step { display: block; padding: 30px 26px 32px; transition: transform .25s cubic-bezier(.3, 1.6, .5, 1), box-shadow .25s; }
   .step:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--cafe); }

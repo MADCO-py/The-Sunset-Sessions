@@ -62,8 +62,13 @@ export const FUENTES = [
   'Otro',
 ]
 
-// Logos de marcas: agregar { nombre: 'Marca', logo: 'marca.png' } (archivo en assets/).
-// Mientras esté vacío se muestran espacios de ejemplo.
-export const MARCAS = []
+// Marcas aliadas. Son 3 lugares: los que falten se muestran como "Próximamente".
+// Para agregar una: sube el logo a assets/ y agrega { nombre, logo, instagram }.
+export const TOTAL_MARCAS = 3
+export const MARCAS = [
+  { nombre: 'Three Day Art', logo: 'threedayart.webp', instagram: 'https://www.instagram.com/threedayart' },
+  { nombre: 'Pop Culture', logo: 'popculture.webp', instagram: 'https://www.instagram.com/popculture.gt/' },
+  { nombre: 'Entre Volcanes', logo: 'entrevolcanes.webp', instagram: 'https://www.instagram.com/entrevolcanes.gt' },
+]
 
 export const asset = (archivo) => `./assets/${archivo}`
