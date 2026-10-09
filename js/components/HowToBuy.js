@@ -7,7 +7,7 @@ const S = { fill: 'none', stroke: '#FEFFC6', strokeWidth: 3.4, strokeLinecap: 'r
 const PASOS = [
   {
     titulo: 'Llena tus datos',
-    texto: 'Nombre, edad, teléfono, correo y cómo te enteraste del evento.',
+    texto: 'Nombre, edad, teléfono y cómo te enteraste del evento. El correo es opcional.',
     dibujo: html`<g ...${S}><path d="M22 14 H78 V90 H22 Z" /><path d="M38 8 H62 V20 H38 Z" /><path d="M32 66 H68 M32 76 H58" /><path d="M42 56 q8 6 16 0" /></g><${Eye} x="42" y="42" /><${Eye} x="58" y="42" />`,
   },
   {

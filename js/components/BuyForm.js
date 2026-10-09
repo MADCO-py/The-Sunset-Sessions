@@ -8,7 +8,8 @@ const REGLAS = {
   nombre: (d) => d.nombre.trim().length >= 3,
   edad: (d) => +d.edad >= 1 && +d.edad <= 99,
   telefono: (d) => d.telefono.replace(/\D/g, '').length === 8,
-  correo: (d) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.correo.trim()),
+  // opcional: vacío está bien, pero si lo escriben tiene que ser válido
+  correo: (d) => !d.correo.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.correo.trim()),
   fuente: (d) => !!d.fuente,
 }
 
@@ -36,7 +37,7 @@ function mensaje(d) {
     `*Nombre:* ${d.nombre.trim()}`,
     `*Edad:* ${d.edad}`,
     `*Teléfono:* ${d.telefono}`,
-    `*Correo:* ${d.correo.trim()}`,
+    ...(d.correo.trim() ? [`*Correo:* ${d.correo.trim()}`] : []),
     `*Me enteré por:* ${fuenteTexto(d)}`,
     '',
     `*${EVENTO.tipoEntrada}:* ${EVENTO.precio}`,
@@ -48,7 +49,7 @@ const V = (v) => (v ? html`<mark>${v}</mark>` : html`<span className="empty">...
 function Preview({ d }) {
   return html`
     <div className="bubble">
-      Hola, quiero comprar mi entrada para The Sunset Sessions (${EVENTO.fecha}, ${EVENTO.lugar}).${'\n\n'}Nombre: ${V(d.nombre.trim())}${'\n'}Edad: ${V(d.edad)}${'\n'}Teléfono: ${V(d.telefono)}${'\n'}Correo: ${V(d.correo.trim())}${'\n'}Me enteré por: ${V(fuenteTexto(d))}${'\n\n'}${EVENTO.tipoEntrada}: ${EVENTO.precio}
+      Hola, quiero comprar mi entrada para The Sunset Sessions (${EVENTO.fecha}, ${EVENTO.lugar}).${'\n\n'}Nombre: ${V(d.nombre.trim())}${'\n'}Edad: ${V(d.edad)}${'\n'}Teléfono: ${V(d.telefono)}${d.correo.trim() ? html`${'\n'}Correo: <mark>${d.correo.trim()}</mark>` : ''}${'\n'}Me enteré por: ${V(fuenteTexto(d))}${'\n\n'}${EVENTO.tipoEntrada}: ${EVENTO.precio}
     </div>
   `
 }
@@ -107,7 +108,7 @@ export default function BuyForm() {
             ${field('telefono', 'Número de teléfono', false, html`
               <input id="telefono" value=${d.telefono} onChange=${set('telefono')} type="tel" inputMode="tel" autoComplete="tel-national" placeholder="Ej. 5555 1234" />
             `)}
-            ${field('correo', 'Correo electrónico', true, html`
+            ${field('correo', html`Correo electrónico <span className="optional">(opcional)</span>`, true, html`
               <input id="correo" value=${d.correo} onChange=${set('correo')} type="email" inputMode="email" autoComplete="email" autoCapitalize="none" placeholder="tucorreo@gmail.com" />
             `)}
             ${field('fuente', null, true, html`

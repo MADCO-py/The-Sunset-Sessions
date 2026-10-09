@@ -293,6 +293,7 @@ form { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 14px; }
 .field input::placeholder, .otro::placeholder { color: rgba(254, 255, 198, .35); }
 .field input:focus, .otro:focus { box-shadow: 4px 4px 0 var(--naranja); }
 .field.bad input { border-color: var(--naranja); box-shadow: 4px 4px 0 var(--naranja); }
+.optional { color: var(--crema-60); font-weight: 500; }
 .err { color: #ffb27a; font-size: 14px; font-weight: 500; }
 .chips { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip { position: relative; }
