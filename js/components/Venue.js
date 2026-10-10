@@ -1,6 +1,6 @@
 import { html, useEffect, useRef, useState, GoogleLogo, NavigationArrow, X, ArrowRight } from '../lib.js'
-import { EVENTO, NAVEGACION, asset } from '../config.js'
-import { Reveal, SectionHead } from './Shared.js'
+import { CUPOS, EVENTO, NAVEGACION, asset } from '../config.js'
+import { Ice, Reveal, SectionHead } from './Shared.js'
 
 // Fotos del lugar, en orden.
 // forma: 'alta' (dos filas), 'ancha' (todo el ancho) o 'normal'.
@@ -79,7 +79,7 @@ export default function Venue() {
             <dl className="facts">
               <div><dt>Fecha</dt><dd>${EVENTO.diaCompleto}</dd></div>
               <div><dt>Hora</dt><dd>${EVENTO.hora}</dd></div>
-              <div><dt>${EVENTO.tipoEntrada}</dt><dd>${EVENTO.precio}</dd></div>
+              <div><dt>${EVENTO.tipoEntrada}</dt><dd>${EVENTO.fase && html`<${Ice} />${EVENTO.fase}, `}${EVENTO.precio}${CUPOS && ` (${CUPOS})`}</dd></div>
               <div><dt>Dirección</dt><dd>${EVENTO.direccion}</dd></div>
             </dl>
             <div className="nav-btns">

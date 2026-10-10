@@ -24,6 +24,14 @@ export function Sprites() {
             <path d="M13 17 l-1 6 M16 17 l-1 6" fill="none" />
           </g>
         </symbol>
+        <symbol id="ice" viewBox="0 0 40 40">
+          <g stroke="#170803" strokeWidth="2.4" strokeLinejoin="round" strokeLinecap="round">
+            <path d="M20 4 L35 11 L35 28 L20 36 L5 28 L5 11 Z" fill="#FEFFC6" />
+            <path d="M5 20 L20 27 L35 20 L35 28 L20 36 L5 28 Z" fill="#4F1E0C" />
+            <path d="M5 11 L20 18 L35 11 M20 18 V36" fill="none" />
+            <path d="M10 14 L10 17 M14 9 L18 7" fill="none" stroke="#DA6220" />
+          </g>
+        </symbol>
       </defs>
     </svg>
   `
@@ -31,6 +39,10 @@ export function Sprites() {
 
 export const Glove = ({ className = 'glove' }) =>
   html`<svg className=${className} aria-hidden="true"><use href="#glove" /></svg>`
+
+// Cubo de hielo con café frío, para la fase Cold Brew
+export const Ice = ({ className = 'ice' }) =>
+  html`<svg className=${className} aria-hidden="true"><use href="#ice" /></svg>`
 
 export const Eye = (props) => html`<use href="#eye" ...${props} />`
 

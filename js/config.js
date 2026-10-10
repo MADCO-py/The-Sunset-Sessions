@@ -14,6 +14,8 @@ export const EVENTO = {
   lugar: 'Casa Tina, zona 10',
   precio: 'Q100',
   tipoEntrada: 'Preventa', // cámbialo a 'Entrada general' cuando termine la preventa
+  fase: 'Fase 1: Cold Brew', // déjalo en '' para no mostrar fase
+  cupos: 30, // déjalo en 0 para no mostrar cupos
   direccion: 'Diagonal 6 15-36, zona 10, Ciudad de Guatemala',
 }
 
@@ -70,5 +72,9 @@ export const MARCAS = [
   { nombre: 'Pop Culture', logo: 'popculture.webp', instagram: 'https://www.instagram.com/popculture.gt/' },
   { nombre: 'Entre Volcanes', logo: 'entrevolcanes.webp', instagram: 'https://www.instagram.com/entrevolcanes.gt' },
 ]
+
+// "Preventa · Fase 1: Cold Brew" y "30 cupos", para textos y mensaje de WhatsApp
+export const ENTRADA = [EVENTO.tipoEntrada, EVENTO.fase].filter(Boolean).join(' · ')
+export const CUPOS = EVENTO.cupos ? `${EVENTO.cupos} cupos` : ''
 
 export const asset = (archivo) => `./assets/${archivo}`

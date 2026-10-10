@@ -1,6 +1,6 @@
 import { html, useState, WhatsappLogo } from '../lib.js'
-import { EVENTO, FUENTES, WHATSAPP, asset } from '../config.js'
-import { Reveal, SectionHead, waLink } from './Shared.js'
+import { CUPOS, ENTRADA, EVENTO, FUENTES, WHATSAPP, asset } from '../config.js'
+import { Ice, Reveal, SectionHead, waLink } from './Shared.js'
 
 const VACIO = { nombre: '', edad: '', telefono: '', correo: '', fuente: '', otro: '' }
 
@@ -40,7 +40,7 @@ function mensaje(d) {
     ...(d.correo.trim() ? [`*Correo:* ${d.correo.trim()}`] : []),
     `*Me enteré por:* ${fuenteTexto(d)}`,
     '',
-    `*${EVENTO.tipoEntrada}:* ${EVENTO.precio}`,
+    `*${ENTRADA}:* ${EVENTO.precio}`,
   ].join('\n')
 }
 
@@ -49,7 +49,7 @@ const V = (v) => (v ? html`<mark>${v}</mark>` : html`<span className="empty">...
 function Preview({ d }) {
   return html`
     <div className="bubble">
-      Hola, quiero comprar mi entrada para The Sunset Sessions (${EVENTO.fecha}, ${EVENTO.lugar}).${'\n\n'}Nombre: ${V(d.nombre.trim())}${'\n'}Edad: ${V(d.edad)}${'\n'}Teléfono: ${V(d.telefono)}${d.correo.trim() ? html`${'\n'}Correo: <mark>${d.correo.trim()}</mark>` : ''}${'\n'}Me enteré por: ${V(fuenteTexto(d))}${'\n\n'}${EVENTO.tipoEntrada}: ${EVENTO.precio}
+      Hola, quiero comprar mi entrada para The Sunset Sessions (${EVENTO.fecha}, ${EVENTO.lugar}).${'\n\n'}Nombre: ${V(d.nombre.trim())}${'\n'}Edad: ${V(d.edad)}${'\n'}Teléfono: ${V(d.telefono)}${d.correo.trim() ? html`${'\n'}Correo: <mark>${d.correo.trim()}</mark>` : ''}${'\n'}Me enteré por: ${V(fuenteTexto(d))}${'\n\n'}${ENTRADA}: ${EVENTO.precio}
     </div>
   `
 }
@@ -133,8 +133,11 @@ export default function BuyForm() {
 
           <${Reveal} as="aside" className="preview" aria-live="polite">
             <div className="ticket">
-              <span>${EVENTO.tipoEntrada}<small>${EVENTO.fecha}, ${EVENTO.hora.split(' a ')[0]} p. m.</small></span>
-              <b>${EVENTO.precio}</b>
+              <span>
+                ${EVENTO.fase && html`<em className="fase"><${Ice} />${EVENTO.fase}</em>`}
+                ${EVENTO.tipoEntrada}<small>${EVENTO.fecha}, ${EVENTO.hora.split(' a ')[0]} p. m.</small>
+              </span>
+              <b>${EVENTO.precio}${CUPOS && html`<small>${CUPOS}</small>`}</b>
             </div>
             <div className="phone">
               <div className="phone-top">

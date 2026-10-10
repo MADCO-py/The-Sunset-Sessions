@@ -308,6 +308,10 @@ form { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 14px; }
 .ticket { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; padding: 14px 18px; background: var(--crema); color: var(--noche); border: 2px solid var(--noche); font-weight: 700; }
 .ticket small { display: block; font-weight: 500; font-size: 14px; }
 .ticket b { font-family: var(--display); font-weight: 400; font-size: 32px; line-height: 1; }
+.ticket b small { display: block; margin-top: 4px; font-family: var(--body); font-size: 13px; font-weight: 700; text-align: right; }
+.ticket .fase { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-style: normal; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--cafe); }
+.ice { width: 22px; height: 22px; flex: none; vertical-align: -5px; margin-right: 6px; }
+.ticket .ice { margin-right: 0; }
 .phone { background: #0f0502; border: 3px solid var(--crema); box-shadow: 8px 8px 0 var(--naranja); }
 .phone-top { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 2px solid var(--cafe); }
 .phone-top img { width: 40px; height: 40px; object-fit: contain; }
