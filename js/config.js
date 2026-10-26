@@ -51,8 +51,8 @@ export const MSJ_MICROFONO = 'Quiero robarme el micrófono, mi nombre es: '
 // Para revelar a un artista: revelado: true, y llenar nombre y foto
 // (la foto se sube a la carpeta assets/).
 export const ARTISTAS = [
-  { pista: 'Fui youtuber de Minecraft por un tiempo.', revelado: false, nombre: '', foto: '' },
-  { pista: 'Tengo una canción muy reciente… ¡oh, mira! Una burbuja.', revelado: false, nombre: '', foto: '' },
+  { pista: 'Fui youtuber de Minecraft por un tiempo.', revelado: true, nombre: 'Joaquinn', foto: 'artista1.png', instagram: 'https://www.instagram.com/mfjoaquinn/' },
+  { pista: 'Tengo una canción muy reciente… ¡oh, mira! Una burbuja.', revelado: true, nombre: 'INEZ', foto: 'artista2.png', instagram: 'https://www.instagram.com/inezmusica/' },
 ]
 
 export const FUENTES = [

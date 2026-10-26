@@ -9,9 +9,14 @@ function MysteryCard({ artista, i, total }) {
     return html`
       <${Reveal} className="card revealed" delay=${i * 120}>
         <div className="face front">
-          <div className="photo"><img src=${asset(artista.foto)} alt=${artista.nombre} loading="lazy" /></div>
-          <h3>${artista.nombre}</h3>
+          <div className="photo"><img src=${asset(artista.foto)} alt=${artista.nombre || `Artista ${i + 1}`} loading="lazy" /></div>
+          ${artista.nombre && html`<h3>${artista.nombre}</h3>`}
           <p className="clue">${artista.pista}</p>
+          ${artista.instagram && html`
+            <a className="btn sm artist-instagram" href=${artista.instagram} target="_blank" rel="noopener" aria-label=${`Ver a ${artista.nombre} en Instagram`}>
+              <${InstagramLogo} weight="bold" size=${20} /> Ver en Instagram
+            </a>
+          `}
         </div>
       <//>
     `
@@ -66,19 +71,20 @@ export default function Artists() {
   }
   const n = ARTISTAS.length
   const palabra = NUMEROS[n] || n
+  const todosRevelados = ARTISTAS.every(a => a.revelado)
   const intro = n === 1 ? 'Un artista, una pista.' : `${palabra} artistas, ${String(palabra).toLowerCase()} pistas.`
 
   return html`
     <section className="block mystery" id="artistas" ref=${ref} onPointerMove=${move}>
       <img className="peek boil" src=${asset('sun_kiss.webp')} alt="" />
       <div className="wrap">
-        <${SectionHead} title="¿Quién viene?">${intro} Toca una tarjeta y ve si adivinas quién es.<//>
+        <${SectionHead} title="¿Quién viene?">${todosRevelados ? 'Conoce a los artistas que nos acompañarán en The Sunset Sessions.' : `${intro} Toca una tarjeta y ve si adivinas quién es.`}<//>
         <div className=${`cards cards-${Math.min(n, 3)}`}>
           ${ARTISTAS.map((a, i) => html`<${MysteryCard} key=${i} artista=${a} i=${i} total=${n} />`)}
         </div>
         <${Reveal} as="p" className="mystery-note">
           <${Glove} className="note-glove" />
-          Revelamos a cada artista en Instagram antes del ${EVENTO.fecha}.
+          ${todosRevelados ? `Nos vemos el ${EVENTO.fecha}. Sigue a los artistas en Instagram.` : `Revelamos a cada artista en Instagram antes del ${EVENTO.fecha}.`}
         <//>
       </div>
     </section>
