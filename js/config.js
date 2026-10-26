@@ -12,9 +12,9 @@ export const EVENTO = {
   hora: '4:00 a 9:00 p. m.',
   inicio: '2026-11-07T16:00:00-06:00', // hora de Guatemala, para la cuenta regresiva
   lugar: 'Casa Tina, zona 10',
-  precio: 'Q100',
+  precio: 'Q110',
   tipoEntrada: 'Preventa', // cámbialo a 'Entrada general' cuando termine la preventa
-  fase: 'Fase 1: Cold Brew', // déjalo en '' para no mostrar fase
+  fase: 'Fase 2', // déjalo en '' para no mostrar fase
   cupos: 30, // déjalo en 0 para no mostrar cupos
   direccion: 'Diagonal 6 15-36, zona 10, Ciudad de Guatemala',
 }
@@ -73,7 +73,7 @@ export const MARCAS = [
   { nombre: 'Entre Volcanes', logo: 'entrevolcanes.webp', instagram: 'https://www.instagram.com/entrevolcanes.gt' },
 ]
 
-// "Preventa · Fase 1: Cold Brew" y "30 cupos", para textos y mensaje de WhatsApp
+// "Preventa · Fase 2" y "30 cupos", para textos y mensaje de WhatsApp
 export const ENTRADA = [EVENTO.tipoEntrada, EVENTO.fase].filter(Boolean).join(' · ')
 export const CUPOS = EVENTO.cupos ? `${EVENTO.cupos} cupos` : ''
 
