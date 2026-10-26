@@ -444,6 +444,7 @@ footer h4 { font-weight: 800; font-size: 16px; margin-bottom: 12px; }
   .vibe:hover svg { transform: rotate(-8deg) scale(1.08); }
   .vibe h3 { font-size: 30px; margin-bottom: 8px; }
   .cards { gap: 28px; }
+  .cards.cards-2.cards-revealed { max-width: 748px; margin-inline: auto; }
   .cards.cards-3 { grid-template-columns: repeat(3, 1fr); }
   .card { height: 520px; }
   .front .q span { font-size: 250px; }

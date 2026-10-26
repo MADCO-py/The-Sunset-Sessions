@@ -79,7 +79,7 @@ export default function Artists() {
       <img className="peek boil" src=${asset('sun_kiss.webp')} alt="" />
       <div className="wrap">
         <${SectionHead} title="¿Quién viene?">${todosRevelados ? 'Conoce a los artistas que nos acompañarán en The Sunset Sessions.' : `${intro} Toca una tarjeta y ve si adivinas quién es.`}<//>
-        <div className=${`cards cards-${Math.min(n, 3)}`}>
+        <div className=${`cards cards-${Math.min(n, 3)}${todosRevelados ? ' cards-revealed' : ''}`}>
           ${ARTISTAS.map((a, i) => html`<${MysteryCard} key=${i} artista=${a} i=${i} total=${n} />`)}
         </div>
         <${Reveal} as="p" className="mystery-note">
