@@ -1,10 +1,12 @@
 import { html, useEffect, useLayoutEffect, useMemo, useRef } from '../lib.js'
-import { asset, EVENTO } from '../config.js'
+import { asset, EVENTO, PROMOCION } from '../config.js'
 import { Glove } from './Shared.js'
 
 const PALABRAS = ['The', 'Sunset', 'Sessions']
 
 export default function Hero() {
+  const fechaLocal = (fecha) => fecha.toLocaleDateString('es-GT', { timeZone: 'America/Guatemala' })
+  const esManana = fechaLocal(new Date()) === fechaLocal(new Date(new Date(EVENTO.inicio).getTime() - 86400000))
   const heroRef = useRef(null)
   const titleRef = useRef(null)
   const horizonRef = useRef(null)
@@ -58,11 +60,11 @@ export default function Hero() {
       <div className="sun" />
       <div className="horizon" ref=${horizonRef} />
 
-      <a className="badge" href="#comprar" aria-label=${`${EVENTO.tipoEntrada}: ${EVENTO.precio}`}>
+      <a className="badge" href="#comprar" aria-label=${`${PROMOCION.entradas} entradas por ${PROMOCION.precio}`}>
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <path className="boil" d="M50 2 L58 20 L74 8 L74 28 L94 26 L84 42 L98 54 L80 62 L88 82 L68 78 L62 98 L50 84 L38 98 L32 78 L12 82 L20 62 L2 54 L16 42 L6 26 L26 28 L26 8 L42 20 Z" fill="#4F1E0C" stroke="#FEFFC6" strokeWidth="2.5" strokeLinejoin="round" />
         </svg>
-        <span className="in"><b>${EVENTO.precio}</b><small>${EVENTO.tipoEntrada.toLowerCase()}</small></span>
+        <span className="in"><b>${PROMOCION.precio}</b><small>${PROMOCION.entradas} entradas</small></span>
       </a>
 
       <div className="hero-inner wrap">
@@ -76,9 +78,16 @@ export default function Hero() {
           <span>${EVENTO.hora}</span>
           <span>${EVENTO.lugar}</span>
         </div>
+        <a className="super-promo" href="#comprar">
+          <span className="promo-title">${PROMOCION.titulo}</span>
+          ${esManana && html`<span className="promo-urgency">¡EL EVENTO ES MAÑANA!</span>`}
+          <strong>${PROMOCION.entradas} entradas por <em>${PROMOCION.precio}</em></strong>
+          <span>7 de noviembre · Casa Tina · ¡Ven con alguien!</span>
+          <b>Aprovechar promoción →</b>
+        </a>
         <div className="hero-cta">
           <a className="btn" href="#comprar">Comprar mi entrada <${Glove} /></a>
-          <a className="btn ghost" href="#artistas">Adivina los artistas</a>
+          <a className="btn ghost" href="#artistas">Conoce a los artistas</a>
         </div>
       </div>
     </header>

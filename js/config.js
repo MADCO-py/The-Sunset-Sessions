@@ -19,6 +19,12 @@ export const EVENTO = {
   direccion: 'Diagonal 6 15-36, zona 10, Ciudad de Guatemala',
 }
 
+export const PROMOCION = {
+  titulo: '¡SUPER PROMOCIÓN!',
+  entradas: 2,
+  precio: 'Q180',
+}
+
 // Si consigues las coordenadas exactas (ej. '14.5967,-90.5134'), ponlas aquí
 // y los botones de Google Maps y Waze llevarán justo a la puerta.
 export const COORDENADAS = ''
