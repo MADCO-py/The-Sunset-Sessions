@@ -1,8 +1,8 @@
 import { html, useState, WhatsappLogo } from '../lib.js'
-import { CUPOS, ENTRADA, EVENTO, FUENTES, PROMOCION, WHATSAPP, asset } from '../config.js'
+import { CUPOS, ENTRADA, EVENTO, FUENTES, WHATSAPP, asset } from '../config.js'
 import { Ice, Reveal, SectionHead, waLink } from './Shared.js'
 
-const VACIO = { nombre: '', edad: '', telefono: '', correo: '', fuente: '', otro: '', oferta: 'promo' }
+const VACIO = { nombre: '', edad: '', telefono: '', correo: '', fuente: '', otro: '' }
 
 const REGLAS = {
   nombre: (d) => d.nombre.trim().length >= 3,
@@ -29,14 +29,10 @@ const formatoTel = (v) => {
   return n.length > 4 ? `${n.slice(0, 4)} ${n.slice(4)}` : n
 }
 
-const compra = (d) => d.oferta === 'promo'
-  ? { etiqueta: `${PROMOCION.titulo} · ${PROMOCION.entradas} entradas`, precio: PROMOCION.precio, cantidad: PROMOCION.entradas }
-  : { etiqueta: ENTRADA, precio: EVENTO.precio, cantidad: 1 }
-
 // Lo que se envía por WhatsApp (los * ponen negrita en WhatsApp)
 function mensaje(d) {
   return [
-    `Hola, quiero comprar ${compra(d).cantidad} entrada(s) para The Sunset Sessions (${EVENTO.fecha}, ${EVENTO.lugar}).`,
+    `Hola, quiero comprar mi entrada para The Sunset Sessions (${EVENTO.fecha}, ${EVENTO.lugar}).`,
     '',
     `*Nombre:* ${d.nombre.trim()}`,
     `*Edad:* ${d.edad}`,
@@ -44,7 +40,7 @@ function mensaje(d) {
     ...(d.correo.trim() ? [`*Correo:* ${d.correo.trim()}`] : []),
     `*Me enteré por:* ${fuenteTexto(d)}`,
     '',
-    `*${compra(d).etiqueta}:* ${compra(d).precio}`,
+    `*${ENTRADA}:* ${EVENTO.precio}`,
   ].join('\n')
 }
 
@@ -53,7 +49,7 @@ const V = (v) => (v ? html`<mark>${v}</mark>` : html`<span className="empty">...
 function Preview({ d }) {
   return html`
     <div className="bubble">
-      Hola, quiero comprar ${compra(d).cantidad} entrada(s) para The Sunset Sessions (${EVENTO.fecha}, ${EVENTO.lugar}).${'\n\n'}Nombre: ${V(d.nombre.trim())}${'\n'}Edad: ${V(d.edad)}${'\n'}Teléfono: ${V(d.telefono)}${d.correo.trim() ? html`${'\n'}Correo: <mark>${d.correo.trim()}</mark>` : ''}${'\n'}Me enteré por: ${V(fuenteTexto(d))}${'\n\n'}${compra(d).etiqueta}: ${compra(d).precio}
+      Hola, quiero comprar mi entrada para The Sunset Sessions (${EVENTO.fecha}, ${EVENTO.lugar}).${'\n\n'}Nombre: ${V(d.nombre.trim())}${'\n'}Edad: ${V(d.edad)}${'\n'}Teléfono: ${V(d.telefono)}${d.correo.trim() ? html`${'\n'}Correo: <mark>${d.correo.trim()}</mark>` : ''}${'\n'}Me enteré por: ${V(fuenteTexto(d))}${'\n\n'}${ENTRADA}: ${EVENTO.precio}
     </div>
   `
 }
@@ -103,11 +99,6 @@ export default function BuyForm() {
         <${SectionHead} title="Compra aquí">Llena el formulario y te mandamos directo a WhatsApp con tu mensaje listo.<//>
         <div className="buy-grid">
           <form onSubmit=${submit} noValidate>
-            <fieldset className="offer-options">
-              <legend>Elige tus entradas</legend>
-              <label><input type="radio" name="oferta" value="promo" checked=${d.oferta === 'promo'} onChange=${set('oferta')} /> <span><b>${PROMOCION.titulo}</b> ${PROMOCION.entradas} entradas por ${PROMOCION.precio}</span></label>
-              <label><input type="radio" name="oferta" value="individual" checked=${d.oferta === 'individual'} onChange=${set('oferta')} /> <span>1 entrada por ${EVENTO.precio}</span></label>
-            </fieldset>
             ${field('nombre', 'Nombre completo', true, html`
               <input id="nombre" value=${d.nombre} onChange=${set('nombre')} autoComplete="name" placeholder="Tu nombre y apellido" />
             `)}
@@ -143,10 +134,10 @@ export default function BuyForm() {
           <${Reveal} as="aside" className="preview" aria-live="polite">
             <div className="ticket">
               <span>
-                ${d.oferta !== 'promo' && EVENTO.fase && html`<em className="fase"><${Ice} />${EVENTO.fase}</em>`}
-                ${d.oferta === 'promo' ? `${PROMOCION.entradas} entradas · Promoción` : EVENTO.tipoEntrada}<small>${EVENTO.fecha}, ${EVENTO.hora.split(' a ')[0]} p. m.</small>
+                ${EVENTO.fase && html`<em className="fase"><${Ice} />${EVENTO.fase}</em>`}
+                ${EVENTO.tipoEntrada}<small>${EVENTO.fecha}, ${EVENTO.hora.split(' a ')[0]} p. m.</small>
               </span>
-              <b>${compra(d).precio}${d.oferta !== 'promo' && CUPOS && html`<small>${CUPOS}</small>`}</b>
+              <b>${EVENTO.precio}${CUPOS && html`<small>${CUPOS}</small>`}</b>
             </div>
             <div className="phone">
               <div className="phone-top">

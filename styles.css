@@ -106,18 +106,6 @@ ol, ul { list-style: none; }
 .hero-meta span:nth-child(3) { grid-column: 1 / -1; border-top: 2px solid var(--crema); }
 .hero-cta { display: grid; gap: 14px; width: 100%; max-width: 380px; }
 .hero-cta .btn { width: 100%; }
-.super-promo { display: grid; gap: 10px; width: min(100%, 780px); margin-bottom: 28px; padding: clamp(18px, 4vw, 30px); background: var(--crema); color: var(--noche); border: 3px solid var(--noche); box-shadow: 7px 7px 0 var(--naranja); text-decoration: none; }
-.super-promo .promo-title { font-family: var(--display); font-size: clamp(26px, 5.5vw, 48px); line-height: 1.1; }
-.super-promo .promo-urgency { font-weight: 800; color: var(--cafe); }
-.super-promo strong { font-size: clamp(30px, 6vw, 64px); line-height: 1.1; font-weight: 800; }
-.super-promo em { display: inline-block; font-style: normal; color: var(--cafe); }
-.super-promo > b { justify-self: center; padding: 10px 16px; background: var(--noche); color: var(--crema); }
-.super-promo:focus-visible { outline: 3px solid var(--crema); outline-offset: 10px; }
-.offer-options { grid-column: 1 / -1; min-width: 0; display: grid; gap: 12px; padding: 16px; border: 2px solid var(--naranja); }
-.offer-options legend { padding-inline: 6px; font-weight: 700; }
-.offer-options label { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-.offer-options input { flex: 0 0 auto; width: 20px; height: 20px; accent-color: var(--naranja); }
-.offer-options b { display: block; color: var(--naranja); }
 .badge { position: absolute; z-index: 3; right: 12px; top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 14px); width: 84px; height: 84px; display: grid; place-items: center; text-align: center; text-decoration: none; animation: spin 9s steps(36) infinite; }
 .badge svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .badge b { position: relative; display: block; font-family: var(--display); font-weight: 400; font-size: 19px; line-height: 1; }

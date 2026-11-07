@@ -12,17 +12,11 @@ export const EVENTO = {
   hora: '4:00 a 9:00 p. m.',
   inicio: '2026-11-07T16:00:00-06:00', // hora de Guatemala, para la cuenta regresiva
   lugar: 'Casa Tina, zona 10',
-  precio: 'Q110',
-  tipoEntrada: 'Preventa', // cámbialo a 'Entrada general' cuando termine la preventa
-  fase: 'Fase 2', // déjalo en '' para no mostrar fase
+  precio: 'Q130',
+  tipoEntrada: 'Entrada general', // cámbialo a 'Entrada general' cuando termine la preventa
+  fase: '', // déjalo en '' para no mostrar fase
   cupos: 30, // déjalo en 0 para no mostrar cupos
   direccion: 'Diagonal 6 15-36, zona 10, Ciudad de Guatemala',
-}
-
-export const PROMOCION = {
-  titulo: '¡SUPER PROMOCIÓN!',
-  entradas: 2,
-  precio: 'Q180',
 }
 
 // Si consigues las coordenadas exactas (ej. '14.5967,-90.5134'), ponlas aquí
@@ -79,7 +73,7 @@ export const MARCAS = [
   { nombre: 'Entre Volcanes', logo: 'entrevolcanes.webp', instagram: 'https://www.instagram.com/entrevolcanes.gt' },
 ]
 
-// "Preventa · Fase 2" y "30 cupos", para textos y mensaje de WhatsApp
+// Tipo de entrada y cupos, para textos y mensaje de WhatsApp
 export const ENTRADA = [EVENTO.tipoEntrada, EVENTO.fase].filter(Boolean).join(' · ')
 export const CUPOS = EVENTO.cupos ? `${EVENTO.cupos} cupos` : ''
 

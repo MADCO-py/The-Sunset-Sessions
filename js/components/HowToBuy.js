@@ -1,4 +1,5 @@
 import { html } from '../lib.js'
+import { EVENTO } from '../config.js'
 import { Eye, Reveal, SectionHead } from './Shared.js'
 
 const S = { fill: 'none', stroke: '#FEFFC6', strokeWidth: 3.4, strokeLinecap: 'round', strokeLinejoin: 'round' }
@@ -15,8 +16,8 @@ const PASOS = [
     dibujo: html`<g ...${S}><path d="M10 16 H90 V70 H42 L24 88 V70 H10 Z" /><path d="M40 52 q10 8 20 0" /></g><${Eye} x="40" y="38" /><${Eye} x="60" y="38" />`,
   },
   {
-    titulo: 'Paga y asegura tus entradas',
-    texto: 'Te mandamos los datos para pagar y te confirmamos tus entradas por el mismo chat.',
+    titulo: `Paga ${EVENTO.precio} y listo`,
+    texto: 'Te mandamos los datos para pagar y te confirmamos tu entrada por el mismo chat.',
     dibujo: html`<g ...${S}><path d="M8 28 H92 V44 q-8 6 0 12 V72 H8 V56 q8 -6 0 -12 Z" /><path d="M66 30 V70" strokeDasharray="4 6" /><path d="M28 58 q8 6 16 0" /></g><${Eye} x="28" y="46" /><${Eye} x="44" y="46" />`,
   },
 ]

@@ -1,5 +1,5 @@
 import { html, useEffect, useState } from '../lib.js'
-import { PROMOCION } from '../config.js'
+import { EVENTO } from '../config.js'
 
 // Barra fija abajo en celular: aparece después del inicio y se esconde
 // cuando ya estás en la sección de compra.
@@ -25,7 +25,7 @@ export default function StickyBuy() {
 
   return html`
     <div className=${`sticky-buy ${show ? 'show' : ''}`} aria-hidden=${!show}>
-      <p><b>${PROMOCION.precio}</b><span>${PROMOCION.entradas} entradas</span></p>
+      <p><b>${EVENTO.precio}</b><span>1 entrada</span></p>
       <a className="btn sm" href="#comprar" tabIndex=${show ? 0 : -1}>Comprar</a>
     </div>
   `
